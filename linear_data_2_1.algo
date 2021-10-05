@@ -1,0 +1,87 @@
+ALGORITHM similar_elements
+ VAR
+  n1,n2,j,sum: INTEGER;
+  ch: STRING;
+  test: BOOLEAN;
+  set1 : ARRAY_OF INTEGER;
+  set2 : ARRAY_OF INTEGER;
+BEGIN
+    /* longueur de 2 tableaux */
+    // longuer tableau1 (set1) = n1
+        REPEAT
+         write ("set the lenght of you first table");
+         read(n1);
+        UNTIL (n1> 0);
+    // longueur de tableau2 (set2) = n2    
+    REPEAT
+     write ("set the lenght of you second table");
+     read(n2);
+    UNTIL (n2> 0)
+
+    /*saisir les tableaux */
+    // saisir tableau1 (set1)
+    FOR i FROM 0 TO n1-1 STEP 1  DO
+        IF (i=0) THEN
+         write("write your first integer of the first table");
+         read(set1[0]);
+        ELSE
+            REPEAT
+             test = FALSE;
+             write("write your ",i," integer of the first table");
+             read(set1[i]); 
+                FOR j FROM 0 TO i-1 STEP 1  DO
+                    IF ( set1[i] = set1[j]) THEN
+                     test = TRUE;
+                    END_IF
+                END_FOR
+            UNTIL (test = FALSE) 
+        END_IF
+    END_FOR
+
+ 
+    // saisir tableau2 (set2)
+    FOR i FROM 0 TO n2-1 STEP 1  DO
+        IF (i=0) THEN
+            write("write your first integer of the second table");
+            read(set2[0]);
+        ELSE
+            REPEAT
+                 test = FALSE;
+                 write("write your ",i," integer of the second table");
+                 read(set1[i]); 
+                    FOR j FROM 0 TO i-1 STEP 1  DO
+                        IF ( set2[i] = set2[j]) THEN
+                            test = TRUE;
+                        END_IF
+                    END_FOR
+            UNTIL (test = FALSE) 
+        END_IF
+    END_FOR 
+    // somme des distinct element    
+    sum=0;
+    // chaine affichage des distinct element    
+    ch ="similar elements "
+    // compteur     
+    j=0;
+
+    // parcour des elments de tableau1 sur elements des tableau 2     
+    FOR i FROM 0 TO n1-1 STEP 1  DO
+        REPEAT
+            IF (set1[i] = set2[j]) THEN
+             sum = sum + set1[i];
+             ch=ch + " ," set1[i];
+            ELSE
+             j=j+1;
+            END_IF
+        UNTIL ((j= n2-1) or (set1[i] = set2[j]) )    
+    END_FOR
+
+    // elements are duplicated in the 2 array so we have to diplicate the sum    
+    sum = sum * 2;
+
+    /* affichage des resultats */
+    // affichage du somme
+    write(sum);
+    //affichages des elments distinct
+    write (ch," .");
+END

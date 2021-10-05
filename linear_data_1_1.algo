@@ -1,0 +1,71 @@
+ALGORITHM distinct_elements
+VAR
+    n1,n2,i,j,sum: INTEGER;
+    ch: STRING;
+    set1 : ARRAY_OF INTEGER;
+    set2 : ARRAY_OF INTEGER;
+
+BEGIN
+// longueur de 2 tableaux
+// longuer tableau1 (set1) = n1
+    REPEAT
+        write ("set the lenght of you first table");
+        read(n1);
+    UNTIL (n1> 0);
+// longueur de tableau2 (set2) = n2    
+    REPEAT
+        write ("set the lenght of you second table");
+        read(n2);
+    UNTIL (n2> 0)
+// saisir les tableaux
+//compteur parcour
+i=0; 
+// saisir tableau1 (set1)
+FOR i FROM 0 TO n1-1 STEP 1  DO
+    write("write your ",i," integer of the first table");
+    read(set1[i]);
+END_FOR
+// saisir tableau1 (set2)
+FOR i FROM 0 TO n2-1 STEP 1  DO
+    write("write your ",i," integer of the second table");
+    read(set2[i]);
+END_FOR
+// initialisation des variables
+// compteur 1
+    i=0;
+// compteur 2    
+    j=0;
+// somme des distinct element    
+    sum=0;
+// chaine affichage des distinct element    
+    ch ="distinct elements "
+// parcour des elments de tableau1 sur elements des tableau 2     
+    FOR i FROM 0 TO n1-1 STEP 1  DO
+        REPEAT
+         IF (set1[i] <> set2[j]) THEN
+            sum = sum + set1[i];
+            ch=ch + " ," set1[i];
+         ELSE
+            j=j+1;
+         END_IF
+        UNTIL ((j= n2-1) or (set1[i] = set2[j]) )    
+    END_FOR
+// reinitialisation ducompteur secondaire    
+    j=0;
+// parcour elements du tableau2 sur elements du tableau1
+    FOR i FROM 0 TO n2-1 STEP 1  DO
+        REPEAT
+         IF (set1[j] <> set2[i]) THEN
+            sum =sum + set1[j];
+            ch=ch + " ," set1[j];
+         ELSE
+            j=j+1;
+         END_IF
+        UNTIL ((j= n1-1) or (set1[j] = set2[i]) )    
+    END_FOR
+// affichage des resultats
+// affichage du somme
+write(sum);
+//affichages des elments distinct
+write (ch," .");
+END
